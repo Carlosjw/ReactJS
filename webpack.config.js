@@ -15,7 +15,7 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx$/, // verifica se o arquivo termina com .jsx
-                exclue: /node_modules/, // exclui pasta node_modules da conversão
+                exclude: /node_modules/, // exclui pasta node_modules da conversão
                 use: 'babel-loader' // dependência que precisa ser instalada
             }
         ],
