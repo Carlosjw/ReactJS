@@ -2,11 +2,12 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // variável que identitfica o tipo de ambiente
-const isDevelopement = process.env.NODE_ENV !== 'production';
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-    mode: isDevelopement ? 'development' : 'production', // fazendo mudança do ambriente
-    devtool: 'eval-source-map', // desativa o embaralhamento do código
+    // fazendo mudança do ambiente
+    mode: isDevelopment ? 'development' : 'production',    
+    devtool: isDevelopment ? 'eval-source-map' : 'source-map',
     entry: path.resolve(__dirname, 'src', 'index.jsx'),
     output: {
         // vai receber outra propriedade por isso não recebe o nome do arquivo
@@ -33,6 +34,12 @@ module.exports = {
                 test: /\.jsx$/, // verifica se o arquivo termina com .jsx
                 exclude: /node_modules/, // exclui pasta node_modules da conversão
                 use: 'babel-loader' // dependência que precisa ser instalada
+            },
+            // para arquivos css
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                use: ["style-loader", "css-loader"],
             }
         ],
     },
