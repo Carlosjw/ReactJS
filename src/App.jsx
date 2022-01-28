@@ -1,3 +1,4 @@
 export function App() {
-    return <h1>Hello React!</h1>
+    throw new Error('Eita, Solange! O forninho caiu!')
+    return <h1>Hello ReactJS! Ignite!</h1>
 }

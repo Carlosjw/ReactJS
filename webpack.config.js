@@ -1,8 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// variável que identitfica o tipo de ambiente
+const isDevelopement = process.env.NODE_ENV !== 'production';
+
 module.exports = {
-    mode: 'development',
+    mode: isDevelopement ? 'development' : 'production', // fazendo mudança do ambriente
+    devtool: 'eval-source-map', // desativa o embaralhamento do código
     entry: path.resolve(__dirname, 'src', 'index.jsx'),
     output: {
         // vai receber outra propriedade por isso não recebe o nome do arquivo
@@ -12,6 +16,11 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx'],
+    },
+    // automatiza o comando yarn webpack
+    devServer: {
+        // contentBase foi descontinuado
+        static: path.resolve(__dirname, 'public'),
     },
     plugins: [
         new HtmlWebpackPlugin({
